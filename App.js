@@ -174,5 +174,32 @@ const styles = StyleSheet.create({
     //backgroundColor: 'green',
     // alignItems: 'centre',
     // justifyContent: 'centre',
+  },
+  text: {
+    fontSize: 50,
+    fontFamily: 'Tahoma',
+      position: 'centre'
+      
+    
+  },
+  button: {
+    position: 'absolute',
+    bottom: 140,
+    left: 952,
+    backgroundColor: '#B5B3CD',
+    borderRadius: 20,
+    paddingLeft: 40,
+    paddingRight: 40,
+    paddingTop: 10,
+    paddingBottom: 10,
+    padding: 10,
+    zIndex:2
+    
+  },
+  buttontext: {
+    fontSize: 30,
+    fontFamily: 'Tahoma',
+      position: 'centre'
+      
   }
 });
