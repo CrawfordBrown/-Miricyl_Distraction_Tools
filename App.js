@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useRef, useState } from "react";
 import { StyleSheet, Text, View, Dimensions, Animated, TouchableOpacity } from 'react-native';
 import BackgroundImg from './components/background.js';
-
+// import StopWatch from './components/StopWatch.js';
 
 
 
@@ -97,13 +97,19 @@ export default function App() {
     
     <View style={styles.container}>
             <BackgroundImg/>
-           
+            {/* <StopWatch/> */}
 
       <TouchableOpacity onPress={isAnimating ? stopAnimation : startAnimation} style={styles.button}>
         <Text style={styles.buttontext}>{isAnimating ? 'Stop' : 'Start'}</Text>
       </TouchableOpacity>
 
-      
+      <TouchableOpacity style={styles.colourButton}>
+        <Text style={styles.buttontext}>Colour</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.timer}>
+        <Text style={styles.buttontext}>00:30</Text>
+      </TouchableOpacity>
 
       <Animated.View style={{
         width: circleWidth,
@@ -203,5 +209,30 @@ const styles = StyleSheet.create({
     fontFamily: 'Tahoma',
       position: 'centre'
       
+  },
+  colourButton:{
+    position: 'absolute',
+    bottom: 140,
+    left: 650,
+    backgroundColor: '#B5B3CD',
+    borderRadius: 20,
+    paddingLeft: 40,
+    paddingRight: 40,
+    paddingTop: 10,
+    paddingBottom: 10,
+    padding: 10
+  },
+  timer:{
+    position: 'absolute',
+    top: 60,
+    left: 815,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    paddingLeft: 40,
+    paddingRight: 40,
+    paddingTop: 10,
+    paddingBottom: 10,
+    padding: 10
   }
+  
 });
