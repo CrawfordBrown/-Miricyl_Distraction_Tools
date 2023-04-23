@@ -101,7 +101,7 @@ export default function App() {
         <Text style={styles.buttontext}>{isAnimating ? 'Stop' : 'Start'}</Text>
       </TouchableOpacity>
 
-     
+      
 
       <Animated.View style={{
         width: circleWidth,
@@ -115,8 +115,23 @@ export default function App() {
         zIndex: 1
       }}>
 
+        <Text style={styles.text}>Inhale</Text>
       </Animated.View>
-     
+      <Animated.View style={{
+        width: circleWidth,
+        height: circleWidth,
+        ...StyleSheet.absoluteFill,
+        position: 'absolute',  top: 450,
+        left: 812,
+        right: 0,
+        bottom: 0,
+        opacity: textOpacity,
+        
+        opacity: exhale,
+        zIndex: 1
+      }}>
+        <Text style={styles.text}>Exhale</Text>
+      </Animated.View>
       {[0,1,2,3,4,5,6,7].map((item) => {
         const rotation = move.interpolate({
           inputRange: [0,1],
