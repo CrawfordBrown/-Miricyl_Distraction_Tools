@@ -2,6 +2,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useRef, useState } from "react";
 import { StyleSheet, Text, View, Dimensions, Animated, TouchableOpacity } from 'react-native';
+import BackgroundImg from './components/background.js';
 
 
 
@@ -95,6 +96,7 @@ export default function App() {
   return (
     
     <View style={styles.container}>
+            <BackgroundImg/>
            
 
       <TouchableOpacity onPress={isAnimating ? stopAnimation : startAnimation} style={styles.button}>
@@ -143,7 +145,7 @@ export default function App() {
             key={item}
             style={{
               opacity: 0.5,
-              backgroundColor: "purple", 
+              backgroundColor: "#FF6347", 
               width: circleWidth, 
               height: circleWidth,
               borderRadius: circleWidth / 2,
