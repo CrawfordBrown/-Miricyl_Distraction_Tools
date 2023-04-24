@@ -17,6 +17,34 @@ const circleWidth = width / 4;
 // Define the main component of the app
 export default function App() {
 
+  const [timer, setTimer] = useState(0);
+  const intervalRef = useRef(null);
+
+
+    // Function to start the stopwatch timer
+    const startTimer = () => {
+      if (intervalRef.current === null) {
+        intervalRef.current = setInterval(() => {
+          setTimer((prevTimer) => prevTimer + 1);
+        }, 1000);
+      }
+    };
+  
+    // Function to stop the stopwatch timer
+    const stopTimer = () => {
+      if (intervalRef.current !== null) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+  
+    // Function to reset the stopwatch timer
+    const resetTimer = () => {
+      stopTimer();
+      setTimer(0);
+    };
+  
+
   // Create Animated values using refs for move and textOpacity
   const move = useRef(new Animated.Value(0)).current;
   const textOpacity = useRef(new Animated.Value(1)).current;
@@ -61,6 +89,8 @@ export default function App() {
   // starts the loopedAnimation
   const startAnimation = () => {
     setIsAnimating(true);
+    resetTimer();
+    startTimer();
     return loopedAnimation.start(() => setIsAnimating(false));
   }
   
@@ -68,6 +98,7 @@ export default function App() {
   // stops the loopedAnimation
   const stopAnimation = () => {
     setIsAnimating(false);
+    stopTimer();
     loopedAnimation.stop();
   }
 
@@ -99,17 +130,20 @@ export default function App() {
             <BackgroundImg/>
             {/* <StopWatch/> */}
 
-      <TouchableOpacity onPress={isAnimating ? stopAnimation : startAnimation} style={styles.button}>
+       {/* Start/Stop button */}
+       <TouchableOpacity onPress={isAnimating ? stopAnimation : startAnimation} style={styles.button}>
         <Text style={styles.buttontext}>{isAnimating ? 'Stop' : 'Start'}</Text>
       </TouchableOpacity>
+      {/* Timer */}
+      <Text style={styles.timer}>{timer}</Text>
 
       <TouchableOpacity style={styles.colourButton}>
         <Text style={styles.buttontext}>Colour</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.timer}>
+      {/* <TouchableOpacity style={styles.timer}>
         <Text style={styles.buttontext}>00:30</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       <Animated.View style={{
         width: circleWidth,
@@ -232,7 +266,10 @@ const styles = StyleSheet.create({
     paddingRight: 40,
     paddingTop: 10,
     paddingBottom: 10,
-    padding: 10
+    padding: 10,
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'black',
   }
   
 });
