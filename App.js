@@ -16,6 +16,7 @@ const circleWidth = width / 4;
 
 // Define the main component of the app
 export default function App() {
+  
 
   const [timer, setTimer] = useState(0);
   const intervalRef = useRef(null);
@@ -25,10 +26,11 @@ export default function App() {
     const startTimer = () => {
       if (intervalRef.current === null) {
         intervalRef.current = setInterval(() => {
-          setTimer((prevTimer) => prevTimer + 1);
-        }, 1000);
+          setTimer((prevTimer) => prevTimer + 1); // Increment by 1 second
+        }, 1000); // Update interval to 1 second
       }
     };
+    
   
     // Function to stop the stopwatch timer
     const stopTimer = () => {
@@ -37,7 +39,8 @@ export default function App() {
         intervalRef.current = null;
       }
     };
-  
+    
+    
     // Function to reset the stopwatch timer
     const resetTimer = () => {
       stopTimer();
@@ -135,7 +138,10 @@ export default function App() {
         <Text style={styles.buttontext}>{isAnimating ? 'Stop' : 'Start'}</Text>
       </TouchableOpacity>
       {/* Timer */}
-      <Text style={styles.timer}>{timer}</Text>
+     
+      <Text style={styles.timer}>{String(Math.floor(timer / 60)).padStart(2, '0')}:{String(timer % 60).padStart(2,'0')}</Text>
+
+
 
       <TouchableOpacity style={styles.colourButton}>
         <Text style={styles.buttontext}>Colour</Text>
@@ -267,9 +273,10 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     padding: 10,
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 30,
     color: 'black',
+    fontFamily: 'Tahoma',
+
   }
   
 });
